@@ -1,0 +1,57 @@
+
+Como o programa está crescendo bem, decidi dividir ele em vários arquivos,
+de modo que cada arquivo corresponda a uma tela, inicialmente pelo menos.
+
+## Arquivo Tela_inicial.py:
+
+    _1.0.0 Arquivo incial, com os comandos primordiais da interface grafica como: 
+      app = Tk()
+      Tk.mainLoop()
+
+    _1.0.1 Label:"texto_1"
+    - Declaração e posicionamento do Label: "texto_1" texto que ainda não foi definido conteúdo mas que sei que terá. 
+
+    _1.0.2 Botâo iniciar    
+      - Ao apertar o botão "iniciar" chamamos a função "fechando_a_tela_inicial" item 1.0.3 
+      
+    _1.0.3 Função "fechando_a_tela_inicial()"  
+      - "esquecemos" o botao_iniciar e o Label "texto_1". 
+      - chama a função ""main.Tela_principal" que é a função importada do arquivo Main.py
+      nessa função é passada o parametro App, que é a variavel responsavel pela interface,
+      na função Tela_principal esse parametro é recebido como a variavel local: "Variavel_app"
+
+
+## arquivo main.py
+    _2.0.0 Variveis globais
+        -Declaração da variaveis globais:
+            - porcentagemBarra
+            -varBarra
+
+    _2.1.0 Função "Tela_principal"
+        -VarBarra definida como global
+
+        _2.1.1 Label "Texto 2"
+            - texto provisório para teste, mostrando na interface que a modularização funcionou
+        
+        _2.1.2 Progressbar
+            - Barra de progressão responsavél por mostrar o nível do usuário
+            - declarada e posicionada a barra de progresso.
+            - set(0) a variavel global "VarBarra" responsavel por preencher a barra de progresso
+
+        _2.1.3 Label "Numero_do_nivel"
+            - declara a variavel e o label do nivel do usuario.
+            ============ Melhoria ============
+            - futuramente esse numero deve ser incrementado de acordo com a quantidade de horas estudada  
+
+        _2.1.4 botão "botao"
+            - declara e posiciona o botao "botao"
+            - botao de teste que incrementa a barra de progresso
+            - No command tem a função click_aumento_da_barra_de_progressao 
+            que é chamada ao pressionar o botão "botao".porem, funções passadas no command dos botoes 
+            não podem ter parenteses, pois quando a função tem parenteses é executada assim que é declarada, dessa forma, a função seria executada independente se o botão fosse apertado ou não.para resolver esse problema, visto que precisamos passar a varivael texto 1 como parametro, vamos criar uma função anônima com lambda. Basicamente, estamos chamando a função anônima com lambda e a função anônima chama a função click_aumento_da_barra_de_progressao (2.2.0), assim conseguimos passar um parametro atraves da função do botao.
+
+        _2.2.0 Função "click_aumento_da_barra_de_progressao"
+            - Função responsavel por aumentar a barra de progresso através das variaveis "porcentagemBarra" e "varBarra".
+            - porcentagemBarra é a varivel que sofre aumento. 
+            - varBarra é a variavel responsavel por setar o progresso da barra de progresso.
+            - quando porcentagemBarra chega a 100 o Label "text_2" vira "concluido" e porcentagemBarra é zerado novamente.
