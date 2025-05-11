@@ -37,21 +37,50 @@ de modo que cada arquivo corresponda a uma tela, inicialmente pelo menos.
             - Barra de progressão responsavél por mostrar o nível do usuário
             - declarada e posicionada a barra de progresso.
             - set(0) a variavel global "VarBarra" responsavel por preencher a barra de progresso
+            - DoubleVar() - classe da biblioteca tkinter usada para armazenar valores do tipo float
 
-        _2.1.3 Label "Numero_do_nivel"
+        _ 2.1.3 - Criação e exibição de uma StringVar associada a um Label
+            - Cria uma instância de StringVar, que é uma variável especial do tkinter usada    para armazenar e monitorar strings.
+            - Essa variável poderá ser atualizada dinamicamente, e qualquer widget que use ela será automaticamente atualizado.
+            var_num_nivel = StringVar()
+            - get() → retorna o valor da variável.
+            - set(valor) → define um novo valor.
+
+            - Cria um widget Label (rótulo) e associa seu conteúdo à StringVar 'var_num_nivel'.
+            - Isso significa que, sempre que 'var_num_nivel' for atualizado com set(), o texto exibido neste Label mudará.
+            - Numero_do_nivel = Label(textvariable=var_num_nivel)
+
+            - Define a posição do Label na janela usando coordenadas absolutas (x=20, y=5).
+            Numero_do_nivel.place(x=20, y=5)
+
+        _ 2.1.4 - Criação de um botão que modifica a StringVar ao ser clicado
+            - Cria um botão com o texto "botao" e largura de 20 caracteres.
+            - Ao ser clicado, ele chama a função 'click_aumento_da_barra_de_progressao',
+            - passando dois argumentos: 'texto_2' (provavelmente outro widget ou string) e a StringVar 'var_num_nivel'.
             - declara a variavel e o label do nivel do usuario.
-            ============ Melhoria ============
-            - futuramente esse numero deve ser incrementado de acordo com a quantidade de horas estudada  
+            
 
         _2.1.4 botão "botao"
-            - declara e posiciona o botao "botao"
             - botao de teste que incrementa a barra de progresso
-            - No command tem a função click_aumento_da_barra_de_progressao 
-            que é chamada ao pressionar o botão "botao".porem, funções passadas no command dos botoes 
-            não podem ter parenteses, pois quando a função tem parenteses é executada assim que é declarada, dessa forma, a função seria executada independente se o botão fosse apertado ou não.para resolver esse problema, visto que precisamos passar a varivael texto 1 como parametro, vamos criar uma função anônima com lambda. Basicamente, estamos chamando a função anônima com lambda e a função anônima chama a função click_aumento_da_barra_de_progressao (2.2.0), assim conseguimos passar um parametro atraves da função do botao.
+            - botao = ttk.Button(Variavel_app,width=20, text="botao",command= lambda:click_aumento_da_barra_de_progressao(texto_2))
+                _ variavel_app - corresponde a variavel app, do app = Tk()
+                _ width - largura 
+                _ text - texto do botao 
+                _ command - função chamada ao clickar no botao
+                    - No command tem a função click_aumento_da_barra_de_progressao 
+                    que é chamada ao pressionar o botão "botao".porem, funções passadas no command dos botoes 
+                    não podem ter parenteses, pois quando a função tem parenteses é executada assim que é declarada, dessa forma, a função seria executada independente se o botão fosse apertado ou não.para resolver esse problema, visto que precisamos passar a varivael texto 1 como parametro, vamos criar uma função anônima com lambda. Basicamente, estamos chamando a função anônima com lambda e a função anônima chama a função click_aumento_da_barra_de_progressao (2.2.0), assim conseguimos passar um parametro atraves da função do botao.
+
+        _2.1.5 Posicinomento dos labels da contagem de tempo
 
         _2.2.0 Função "click_aumento_da_barra_de_progressao"
-            - Função responsavel por aumentar a barra de progresso através das variaveis "porcentagemBarra" e "varBarra".
-            - porcentagemBarra é a varivel que sofre aumento. 
-            - varBarra é a variavel responsavel por setar o progresso da barra de progresso.
-            - quando porcentagemBarra chega a 100 o Label "text_2" vira "concluido" e porcentagemBarra é zerado novamente.
+            _2.2.1
+                - Função responsavel por aumentar a barra de progresso através das variaveis "porcentagemBarra" e "varBarra".
+                - porcentagemBarra é a varivel que sofre aumento. 
+                - varBarra é a variavel responsavel por setar o progresso da barra de progresso.
+            
+            _2.2.2
+            - quando porcentagemBarra chega a 100 o Label "text_2" vira "concluido", o nivel é aumentado e porcentagemBarra é zerado novamente.
+            - nivel_velho recebe o valor da stringVar "var_num_nivel" convertido para inteiro.
+            - nivel_novo é o incremento ddo nivel velho, nivel_velho + 1
+            = var_num_nivel.set(novo_nivel) muda o estado da stringVar.

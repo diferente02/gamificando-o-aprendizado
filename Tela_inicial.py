@@ -1,6 +1,11 @@
 from tkinter import * # Importa tudo do tkinter, incluindo widgets básicos
 from tkinter import ttk # Importa o submódulo ttk com widgets mais modernos e estilizados.
 import main
+import os
+
+#limpa o terminal, antes do programa começar  
+os.system('cls' if os.name == 'nt' else 'clear')
+
 
 #1.0.3
 def Fechando_tela_inicial():
